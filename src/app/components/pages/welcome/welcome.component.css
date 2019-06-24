@@ -1,0 +1,12 @@
+div#header-container {
+    background-image: url('../../../../assets/img/background-1.jpg');
+}
+
+div#header-text {
+    padding: 20vh 0px;
+    color: white
+}
+
+.row-pad-1 {
+    padding: 50px 0px;
+}

@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: #f2f2f2;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.pos-rel {
+    position: relative;
+}
+
+.container-space-1 {
+    padding: 50px 0px;
+}
+
+.fill {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.dim {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.dim-2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.80);
+}
+

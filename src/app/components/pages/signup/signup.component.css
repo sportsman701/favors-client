@@ -1,0 +1,7 @@
+.row-pad-1 {
+    padding: 50px 0px;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: red;
+}
