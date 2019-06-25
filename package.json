@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node app.js",
+    "start": "npm run build && nodemon app.js",
     "dev": "ng serve",
     "startdev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
@@ -29,6 +29,7 @@
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "foundation-sites": "^6.5.1",
+    "nodemon": "^1.19.1",
     "rxjs": "^6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
