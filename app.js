@@ -4,15 +4,15 @@ const path = require('path');
 const PORT = process.env.PORT || 7600;
 const app = express();
 
-app.use(express.static(path.join(__dirname, './build')));
+app.use(express.static(path.join(__dirname, './dist')));
 
 // production mode
 if(process.env.NODE_ENV === 'production') {
   try {
     app.get('*', (req, res) => {
       try {
-        // res.sendFile(path.join(__dirname = './build/index.html'));
-        res.sendFile(path.join(__dirname, './build/index.html'));
+        // res.sendFile(path.join(__dirname = './dist/index.html'));
+        res.sendFile(path.join(__dirname, './dist/index.html'));
       } catch(err) {
         console.log(err);
         res.json({ error: true, msg: 'could not send file...' });
