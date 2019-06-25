@@ -20,7 +20,8 @@ export class ClientService {
             headers: new HttpHeaders({
               'Content-Type':  'application/json',
               'Authorization': window.localStorage.getItem('myfavors-token')
-            })
+            }),
+          withCredentials: true,
         };
         return this.http.get(this.API_PREFIX + '/check_session', httpOptions);
     }
@@ -30,7 +31,8 @@ export class ClientService {
         const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type':  'application/json'
-            })
+            }),
+          withCredentials: true,
         };
         return this.http.post(this.API_PREFIX + '/sign_up', data, httpOptions);
     }
@@ -40,7 +42,8 @@ export class ClientService {
         const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type':  'application/json'
-            })
+            }),
+          withCredentials: true,
         };
         return this.http.put(this.API_PREFIX + '/sign_in', data, httpOptions);
     }
