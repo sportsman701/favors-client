@@ -3,11 +3,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ClientService {
-    API_PREFIX = 'http://localhost:6700/api';
+    API_PREFIX: string;
 
     constructor(
         private http: HttpClient
-    ) {}
+    ) {
+        const isProd = process.env.DEV_OR_PROD === 'PRODUCTION';
+        const api_domain = isProd ? 'https://rmw-myfavors-server.herokuapp.com/api' : `http://localhost:6700/api`;
+        console.log({ isProd, api_domain });
+    }
 
     // GET
     checkSession() {
