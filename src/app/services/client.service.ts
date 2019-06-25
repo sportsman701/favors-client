@@ -8,7 +8,7 @@ export class ClientService {
     constructor(
         private http: HttpClient
     ) {
-        const isProd = window.location.includes('herokuapp'); // process.env.DEV_OR_PROD === 'PRODUCTION';
+        const isProd = window.location.origin.includes('herokuapp'); // process.env.DEV_OR_PROD === 'PRODUCTION';
         const api_domain = isProd ? 'https://rmw-myfavors-server.herokuapp.com/api' : `http://localhost:6700/api`;
         this.API_PREFIX = api_domain;
         console.log({ isProd, api_domain });
