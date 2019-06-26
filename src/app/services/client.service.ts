@@ -25,6 +25,17 @@ export class ClientService {
         };
         return this.http.get(this.API_PREFIX + '/check_session', httpOptions);
     }
+  
+  // GET
+    signout() {
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json'
+            }),
+            withCredentials: true,
+        };
+        return this.http.get(this.API_PREFIX + '/sign_out', httpOptions);
+    }
 
     // POST
     sign_up(data) {
@@ -46,5 +57,16 @@ export class ClientService {
           withCredentials: true,
         };
         return this.http.put(this.API_PREFIX + '/sign_in', data, httpOptions);
+    }
+  
+  // PUT
+    sign_out(data = {}) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json'
+            }),
+            withCredentials: true,
+        };
+        return this.http.put(this.API_PREFIX + '/sign_out', data, httpOptions);
     }
 }
