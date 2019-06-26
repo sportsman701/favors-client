@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State as UserState } from 'src/app/store/actions/user.actions';
 import { Router } from '@angular/router';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +17,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private clientService: ClientService,
   ) { }
 
   ngOnInit() {
@@ -27,8 +29,10 @@ export class NavbarComponent implements OnInit {
   }
 
   onSignout() {
-    this.store.dispatch(new ClearUserState());
-    localStorage.removeItem('myfavors-token');
-    this.router.navigate(['/welcome']);
+    const subscription = this.clientService.sign_out().subscribe(resp => {
+      this.store.dispatch(new ClearUserState());
+      localStorage.removeItem('myfavors-token');
+      this.router.navigate(['/welcome']);
+    });
   }
 }
