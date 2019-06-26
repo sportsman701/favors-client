@@ -25,8 +25,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.clientService.checkSession().subscribe(resp => {
       // console.log(resp);
       if (!resp['online']) {
+        window.localStorage.removeItem('myfavors-token');
         this.store.dispatch(new ClearUserState());
       } else {
+        window.localStorage.setItem('myfavors-token', resp['token']);
         this.store.dispatch(new SetUserState(resp['user']));
         this.router.navigate(['/home']);
       }
