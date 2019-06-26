@@ -19,7 +19,7 @@ export class ClientService {
         const httpOptions = {
             headers: new HttpHeaders({
               'Content-Type':  'application/json',
-              'Authorization': window.localStorage.getItem('myfavors-token')
+              'Authorization': window.localStorage.getItem('myfavors-token') || ''
             }),
           withCredentials: true,
         };
