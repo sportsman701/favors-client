@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "nodemon app.js",
-    "dev": "ng serve",
-    "startdev": "ng serve --proxy-config proxy.conf.json",
+    "dev": "ng serve --open",
+    "startdev": "ng serve --open --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

@@ -1,3 +1,25 @@
 <div class="container container-space-1">
-
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card space-bm-1">
+            <div class="card-body">
+              <img class="home-bio-img" 
+                [src]="user.icon_link" 
+                [alt]="user.displayname">
+        
+              <div class="text-center">
+                <h5>{{ user.displayname }}</h5>
+                <p>{{ user.username }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card space-bm-1">
+            <div class="card-body">
+              
+            </div>
+          </div>
+        </div>
+    </div>
 </div>
