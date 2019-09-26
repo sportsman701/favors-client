@@ -34,7 +34,7 @@ export class ClientService {
             }),
             withCredentials: true,
         };
-        return this.http.get(this.API_PREFIX + '/sign_out', httpOptions);
+        return this.http.get(this.API_PREFIX + '/users/sign_out', httpOptions);
     }
 
     // POST
@@ -45,7 +45,7 @@ export class ClientService {
             }),
           withCredentials: true,
         };
-        return this.http.post(this.API_PREFIX + '/sign_up', data, httpOptions);
+        return this.http.post(this.API_PREFIX + '/users', data, httpOptions);
     }
 
     // PUT
@@ -56,7 +56,7 @@ export class ClientService {
             }),
           withCredentials: true,
         };
-        return this.http.put(this.API_PREFIX + '/sign_in', data, httpOptions);
+        return this.http.put(this.API_PREFIX + '/users', data, httpOptions);
     }
   
   // PUT
@@ -67,6 +67,6 @@ export class ClientService {
             }),
             withCredentials: true,
         };
-        return this.http.put(this.API_PREFIX + '/sign_out', data, httpOptions);
+        return this.http.put(this.API_PREFIX + '/users/sign_out', data, httpOptions);
     }
 }
