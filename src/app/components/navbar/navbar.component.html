@@ -4,16 +4,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav" *ngIf="(user$ | async)">
+    <ul class="navbar-nav" *ngIf="user">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/home']">Home</a>
+        <a class="nav-link" [routerLink]="['/', 'users', user.id]">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link pointer-cursor" (click)="onSignout()">Sign Out</a>
       </li>
     </ul>
 
-    <ul class="navbar-nav" *ngIf="!(user$ | async)">
+    <ul class="navbar-nav" *ngIf="!user">
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/signin']">Sign In</a>
       </li>

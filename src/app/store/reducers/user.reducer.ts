@@ -1,21 +1,15 @@
-import {
-    ActionTypes,
-    State,
-    ActionsUnion
-} from '../actions/user.actions';
 
+import { Action, createReducer, on } from '@ngrx/store';
+import * as UserActions from '../actions/user.actions';
+import * as UserHandlers from './handlers/user.handler';
 
-export const initialState: State = null;
+const _userReducer = createReducer(null,
+  on(UserActions.USER_SIGNIN_ACTION, UserHandlers.set_user_state),
+  on(UserActions.USER_SIGNUP_ACTION, UserHandlers.set_user_state),
+  on(UserActions.USER_UPDATE_ACTION, UserHandlers.set_user_state),
+  on(UserActions.USER_SIGNOUT_ACTION, UserHandlers.clear_user_state),
+);
 
-export function userReducer(state = initialState, action: ActionsUnion): State {
-    switch (action.type) {
-        case ActionTypes.SET_USER_STATE:
-            return action.payload;
-
-        case ActionTypes.CLEAR_USER_STATE:
-            return null;
-
-        default:
-            return state;
-    }
+export function userReducer(state, action: Action) {
+  return _userReducer(state, action);
 }

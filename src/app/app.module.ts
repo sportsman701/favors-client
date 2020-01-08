@@ -1,4 +1,4 @@
-import { ClientService } from './services/client.service';
+import { ClientService } from './services/client/client.service';
 import { UserAuthGuard } from './guards/activators/user-auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,7 +11,6 @@ import { AppRouter } from './app.routes';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './store/reducers/user.reducer';
 import { WelcomeComponent } from './components/pages/welcome/welcome.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SignupComponent } from './components/pages/signup/signup.component';
@@ -21,10 +20,14 @@ import { SearchComponent } from './components/pages/search/search.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { HomeComponent } from './components/pages/home/home.component';
-import { UserComponent } from './components/pages/user/user.component';
+import { UserPageComponent } from './components/pages/user/user.component';
 import { FaqComponent } from './components/pages/faq/faq.component';
 import { InfoComponent } from './components/pages/info/info.component';
 import { SupportComponent } from './components/pages/support/support.component';
+import { AppStoreObj, AppEffectsList } from './store/store';
+import { EffectsModule } from '@ngrx/effects';
+import { UserHomeFragmentComponent } from './components/pages/user/user-home-fragment/user-home-fragment.component';
+import { UserSettingsFragmentComponent } from './components/pages/user/user-settings-fragment/user-settings-fragment.component';
 
 
 @NgModule({
@@ -40,10 +43,12 @@ import { SupportComponent } from './components/pages/support/support.component';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    UserComponent,
+    UserPageComponent,
     FaqComponent,
     InfoComponent,
-    SupportComponent
+    SupportComponent,
+    UserHomeFragmentComponent,
+    UserSettingsFragmentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +57,8 @@ import { SupportComponent } from './components/pages/support/support.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      user: userReducer
-    })
+    StoreModule.forRoot(AppStoreObj),
+    // EffectsModule.forRoot(AppEffectsList),
   ],
   providers: [
     UserAuthGuard,

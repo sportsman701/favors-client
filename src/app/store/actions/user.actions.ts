@@ -1,21 +1,15 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
-export enum ActionTypes {
-    SET_USER_STATE = 'SET_USER_STATE',
-    CLEAR_USER_STATE = 'CLEAR_USER_STATE'
-}
 
-export interface State {
-    id?: number;
-}
 
-export class SetUserState implements Action {
-  readonly type = ActionTypes.SET_USER_STATE;
-  constructor(public payload: State | {}) {}
-}
+export const USER_SIGNIN = '[SigninPageComponent] USER_SIGNIN';
+export const USER_SIGNIN_ACTION = createAction(USER_SIGNIN, props<{ [key: string]: any }>());
 
-export class ClearUserState implements Action {
-  readonly type = ActionTypes.CLEAR_USER_STATE;
-}
+export const USER_SIGNUP = '[SignupPageComponent] USER_SIGNUP';
+export const USER_SIGNUP_ACTION = createAction(USER_SIGNUP, props<{ [key: string]: any }>());
 
-export type ActionsUnion = SetUserState | ClearUserState;
+export const USER_SIGNOUT = '[NavbarComponent] USER_SIGNOUT';
+export const USER_SIGNOUT_ACTION = createAction(USER_SIGNOUT);
+
+export const USER_UPDATE = '[UserSettingsComponent] USER_UPDATE';
+export const USER_UPDATE_ACTION = createAction(USER_UPDATE, props<{ [key: string]: any }>());

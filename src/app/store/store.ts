@@ -1,6 +1,11 @@
-import { State as UserState } from './actions/user.actions';
+import { userReducer } from './reducers/user.reducer';
+import { UserEffects } from './effects/user.effect';
 
 
-export interface AppState {
-    user: UserState;
-}
+export const AppStoreObj = {
+  user: userReducer
+};
+
+export const AppEffectsList = [
+  UserEffects
+];

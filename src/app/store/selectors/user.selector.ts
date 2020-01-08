@@ -1,10 +1,8 @@
 import { createSelector } from '@ngrx/store';
-import { State as UserState } from '../actions/user.actions';
-
-
-
-export interface AppState {
-    user: UserState;
-}
+import { AppState } from 'src/app/interfaces/app-state.interface';
 
 export const selectUser = (state: AppState) => state.user;
+export const userSelector = createSelector(
+  selectUser,
+  (state: any) => state
+);

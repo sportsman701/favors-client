@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from 'src/app/store/store';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { State as UserState } from 'src/app/store/actions/user.actions';
+import { AppState } from 'src/app/interfaces/app-state.interface';
 
 @Component({
   selector: 'app-welcome',
@@ -10,12 +9,11 @@ import { State as UserState } from 'src/app/store/actions/user.actions';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  user$: Observable<UserState>;
+  user$: Observable<any>;
 
   constructor(
     private store: Store<AppState>
   ) { }
 
   ngOnInit() {}
-
 }

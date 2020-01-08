@@ -1,11 +1,11 @@
-import { ClientService } from './../../../services/client.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/store';
 import { Router } from '@angular/router';
-import { SetUserState } from 'src/app/store/actions/user.actions';
+import { AppState } from 'src/app/interfaces/app-state.interface';
+import { PutService } from 'src/app/services/client/put.service';
+import { USER_SIGNIN_ACTION } from 'src/app/store/actions/user.actions';
 
 @Component({
   selector: 'app-signin',
@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   errorMessage: string;
 
   constructor(
-    private clientService: ClientService,
+    private PUT: PutService,
     private store: Store<AppState>,
     private router: Router
   ) { }
@@ -32,15 +32,14 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.error = false;
-    this.subscription = this.clientService.sign_in(this.signinForm.value).subscribe(resp => {
+    this.subscription = this.PUT.sign_in(this.signinForm.value).subscribe(resp => {
       this.errorMessage = resp['message'];
       if (resp['error']) {
         this.error = true;
         return;
       }
-      this.store.dispatch(new SetUserState(resp['user']));
-      window.localStorage.setItem('myfavors-token', resp['token']);
-      this.router.navigate(['/home']);
+      this.store.dispatch(USER_SIGNIN_ACTION(resp.user));
+      this.router.navigate(['/users', resp.user.id]);
     });
   }
 

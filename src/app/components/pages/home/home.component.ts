@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/store';
 import { Router } from '@angular/router';
-import { ClientService } from 'src/app/services/client.service';
-import { State as UserState } from 'src/app/store/actions/user.actions';
+import { AppState } from 'src/app/interfaces/app-state.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +9,11 @@ import { State as UserState } from 'src/app/store/actions/user.actions';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  user: UserState;
+  user: any;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private clientService: ClientService,
   ) { }
 
   ngOnInit() {

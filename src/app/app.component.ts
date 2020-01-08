@@ -1,10 +1,9 @@
-import { ClientService } from './services/client.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from './store/store';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { SetUserState, ClearUserState } from './store/actions/user.actions';
+import { AppState } from './interfaces/app-state.interface';
+import { GetService } from './services/client/get.service';
+import { USER_SIGNOUT_ACTION, USER_UPDATE_ACTION } from './store/actions/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,26 +12,15 @@ import { SetUserState, ClearUserState } from './store/actions/user.actions';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'myfavors-app';
-  subscription: Subscription;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private clientService: ClientService
+    private GET: GetService,
   ) {}
 
   ngOnInit() {
-    this.subscription = this.clientService.checkSession().subscribe(resp => {
-      // console.log(resp);
-      if (!resp['online']) {
-        window.localStorage.removeItem('myfavors-token');
-        this.store.dispatch(new ClearUserState());
-      } else {
-        window.localStorage.setItem('myfavors-token', resp['token']);
-        this.store.dispatch(new SetUserState(resp['user']));
-        this.router.navigate(['/home']);
-      }
-    });
+    this.GET.checkSession().subscribe();
   }
 
   ngOnDestroy() {}

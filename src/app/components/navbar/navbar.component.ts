@@ -1,11 +1,11 @@
-import { ClearUserState } from './../../store/actions/user.actions';
-import { AppState } from './../../store/store';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { State as UserState } from 'src/app/store/actions/user.actions';
 import { Router } from '@angular/router';
-import { ClientService } from 'src/app/services/client.service';
+import { AppState } from 'src/app/interfaces/app-state.interface';
+import { GetService } from 'src/app/services/client/get.service';
+import { USER_SIGNOUT_ACTION } from 'src/app/store/actions/user.actions';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -13,26 +13,24 @@ import { ClientService } from 'src/app/services/client.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  user$: Observable<UserState>;
+  user: IUser;
 
   constructor(
     private store: Store<AppState>,
+    private GET: GetService,
     private router: Router,
-    private clientService: ClientService,
   ) { }
 
   ngOnInit() {
-    this.user$ = this.store.select('user');
     this.store.subscribe(state => {
-
+      console.log(this, state);
+      this.user = state.user;
     });
   }
 
   onSignout() {
-    const subscription = this.clientService.sign_out().subscribe(resp => {
-      this.store.dispatch(new ClearUserState());
-      localStorage.removeItem('myfavors-token');
-      this.router.navigate(['/welcome']);
+    this.GET.sign_out().subscribe((response) => {
+      this.router.navigate(['/']);
     });
   }
 }
