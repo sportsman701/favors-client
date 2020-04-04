@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/interfaces/app-state.interface';
+import { AppState } from '../../../interfaces/app-state.interface';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserModel } from 'src/app/models/user.model';
-import { GetService } from 'src/app/services/client/get.service';
+import { GetService } from '../../../services/client/get.service';
+import { IUserModel } from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-user',
@@ -11,8 +11,8 @@ import { GetService } from 'src/app/services/client/get.service';
   styleUrls: ['./user.component.css']
 })
 export class UserPageComponent implements OnInit {
-  you: UserModel;
-  user: UserModel;
+  you: IUserModel;
+  user: IUserModel;
 
   get youAreUser(): boolean {
     return (

@@ -1,5 +1,5 @@
 import { ClientService } from './services/client/client.service';
-import { UserAuthGuard } from './guards/activators/user-auth.guard';
+import { UserAuthGuard } from './guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

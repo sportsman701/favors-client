@@ -1,42 +1,60 @@
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ClientService {
+  DOMAIN: string;
   API_PREFIX: string;
+  isProd: boolean;
+  apiDomain: string;
 
   constructor(
     public http: HttpClient
   ) {
-    const isProd = window.location.origin.includes('herokuapp'); // process.env.DEV_OR_PROD === 'PRODUCTION';
-    const api_domain = isProd ? 'https://rmw-myfavors-server.herokuapp.com/main' : `http://localhost:6700/main`;
-    this.API_PREFIX = api_domain;
-    console.log({ isProd, api_domain });
+    this.isProd = window.location.origin.includes('herokuapp'); // process.env.DEV_OR_PROD === 'PRODUCTION';
+    this.DOMAIN = this.isProd ? 'https://rmw-myfavors-server.herokuapp.com' : `http://localhost:6700`;
+    this.apiDomain = this.DOMAIN + '/main';
+    this.API_PREFIX = this.apiDomain;
+    console.log(this);
   }
 
-  sendRequest(route: string, method: string, data: object | FormData, content_type: string) {
+  sendRequest<T>(
+    route: string,
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+    data?: object | FormData,
+    report_progress: boolean = false
+  ): Observable<T> {
     const api_url = this.API_PREFIX + route;
 
     const httpOptions: any = {
       withCredentials: true,
-      reportProgress: true,
+      reportProgress: report_progress,
       headers: new HttpHeaders({
-        Accept: 'application/json'
+        Accept: 'application/json',
       }),
     };
     if (data && data.constructor === Object) {
       httpOptions.headers.set('Content-Type', 'application/json');
     }
 
+    let requestObservable: Observable<T>;
+
     switch (method) {
       case 'GET':
-        return this.http.get(api_url, httpOptions);
+        requestObservable = (<any> this.http.get(api_url, httpOptions)) as Observable<T>;
+        break;
       case 'POST':
-        return this.http.post(api_url, data, httpOptions);
+        requestObservable = (<any> this.http.post(api_url, data, httpOptions)) as Observable<T>;
+        break;
       case 'PUT':
-        return this.http.put(api_url, data, httpOptions);
+        requestObservable = (<any> this.http.put(api_url, data, httpOptions)) as Observable<T>;
+        break;
       case 'DELETE':
-        return this.http.delete(api_url, httpOptions);
+        requestObservable = (<any> this.http.delete(api_url, httpOptions)) as Observable<T>;
+        break;
     }
+
+    return requestObservable;
   }
 }

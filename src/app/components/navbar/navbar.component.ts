@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AppState } from 'src/app/interfaces/app-state.interface';
 import { GetService } from 'src/app/services/client/get.service';
 import { USER_SIGNOUT_ACTION } from 'src/app/store/actions/user.actions';
-import { IUser } from 'src/app/interfaces/user.interface';
+import { IUserModel } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,7 @@ import { IUser } from 'src/app/interfaces/user.interface';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  user: IUser;
+  user: IUserModel;
 
   constructor(
     private store: Store<AppState>,

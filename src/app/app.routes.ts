@@ -11,9 +11,9 @@ import { SigninComponent } from './components/pages/signin/signin.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { InfoComponent } from './components/pages/info/info.component';
-import { UserAuthGuard } from './guards/activators/user-auth.guard';
+import { UserAuthGuard } from './guards/auth.guard';
 import { UserPageComponent } from './components/pages/user/user.component';
-import { SignedOutGuard } from './guards/activators/signed-out.guard';
+import { SignedOutGuard } from './guards/signed-out.guard';
 import { UserHomeFragmentComponent } from './components/pages/user/user-home-fragment/user-home-fragment.component';
 import { UserSettingsFragmentComponent } from './components/pages/user/user-settings-fragment/user-settings-fragment.component';
 
